@@ -24,13 +24,13 @@ import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+SECRET_KEY = ('SECRET_KEY')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 MODE=config("MODE", default="dev")
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+
+DEBUG = os.environ.get('DEBUG', True)
 # development
 if config('MODE')=="dev":
    DATABASES = {
@@ -128,10 +128,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # adding config
 cloudinary.config( 
-  cloud_name = "YOUR_CLOUD_NAME", 
-  api_key = "YOUR_API_KEY", 
-  api_secret = "YOUR_API_SECRET" 
+  cloud_name = "mosejoan", 
+  api_key = "548958647683456", 
+  api_secret = "iIoM62bAS1XfPqWBF78L19G8Yt4" 
 )
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
