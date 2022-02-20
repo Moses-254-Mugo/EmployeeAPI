@@ -10,6 +10,8 @@ from rest_framework.response import Response
 from AppEmployee.models import *
 from AppEmployee.serializers import *
 
+from django.core.files.storage import default_storage
+
 
 # Create your views here.
 @csrf_exempt
@@ -70,9 +72,15 @@ def employeeApi(request, id=0):
         return JsonResponse("Failed to Update!!", safe=False)
     
     elif request.method=='DELETE':
-        employee=Employees.objects.get(EmployeeId=id)
+        employee = Employees.objects.get(EmployeeId=id)
         employee.delete()
         return JsonResponse("Deleted Successflly!!",safe=False)
+@csrf_exempt
+def SaveFile(request):
+    file=request.FILES['uploadedFile']
+    file_name = default_storage.save(file.name.file)
+
+    return JsonResponse(file_name, safe=False)
 
 class LandingPage(APIView):
     def get(self, request):
